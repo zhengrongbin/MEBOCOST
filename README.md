@@ -1,10 +1,15 @@
-<img src="./images/mebocost_logo.png" width="200" height="180"></img>
+<img src="./images/mebocost_logo.png" width="200" height="180" class="center"></img>
 
 ## Welcome to use MEBOCOST!
 ### MEBOCOST is a computational software to predict metabolite-based cell-cell communications by single-cell RNA-seq data of tissue samples.
 
 ### Version control
 <li>Current release: 1.0.0</li>
+<hr>
+
+### What is MEBOCOST and hoe does it work?
+<p>MEBOCOST is a Python-based computational tool for inferring metabolite mediated cell-cell communication events using single-cell RNA-seq data. Briefly, in the first step, MEBOCOST imputes the relative abundance of metabolites based on the gene expression of metabolic reaction enzymes. The genes of enzymes were collected from Human Metabolome Database (HMDB). Next, MEBOCOST identifies significant communication events between sender and receiver cells with assumption that the senders are highly abundant of metabolite, meanwhile, receivers highly express sensors (the metabolite corresponding receptor or uptaking transporter). Furthermore, MEBOCOST infers communication associated pathways in receiver cells, which we try to link cellular mechanism of receivers in response to the communication events.</p>
+
 
 ### Installation
 * download and install miniconda enviroment (Users can skip this step if a well python-based environment has been established)
@@ -35,10 +40,11 @@ python setup.py install
 ```
 #### if the mebocost can be imported successfully, you can continue to do analyses by mebocost!
 
-### Tutorial of MEBOCOST
+### Tutorial for MEBOCOST
 
 <li><a href='./Demo_Communication_Prediction.ipynb'>Prediction of cell-cell metabolic communication by scRNA-seq data</a></li>
 <li><a href='./Demo_Pathway_Inference.ipynb'>Inference of cell-cell metabolic communication associated pathways in receiver cells</a></li>
+
 
 <hr>
 Copy Right @ Kaifu Chen Lab

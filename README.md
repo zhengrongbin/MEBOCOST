@@ -1,8 +1,7 @@
 <img src="./images/mebocost_logo.png" width="200" height="180" class="center"></img>
 
-## Welcome to use MEBOCOST!
-### MEBOCOST is a computational software to predict metabolite-based cell-cell communications by single-cell RNA-seq data of tissue samples.
-
+## Welcome to use MEBOCOST: Metabolic Cell-Cell Communication Analysis by Single Cell Transcriptome, a computational software to predict metabolite-based cell-cell communications by single-cell RNA-seq data of tissue samples.
+<hr>
 ### Version control
 <li>Current release: 1.0.0</li>
 <hr>

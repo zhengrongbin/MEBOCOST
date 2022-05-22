@@ -16,7 +16,7 @@ conda activate mebocost
 ```
 * download MEBOCOST package from github
 ```{bash}
-git clone xxxx
+git clone https://github.com/zhengrongbin/MEBOCOST.git
 
 cd MEBOCOST
 ```
@@ -37,4 +37,7 @@ python setup.py install
 ### Tutorial of MEBOCOST
 
 <li><a href='./Demo_Communication_Prediction.ipynb'>Prediction of cell-cell metabolic communication by scRNA-seq data</a></li>
+<li><a href='./Demo_Pathway_Inference.ipynb'>Inference of cell-cell metabolic communication associated pathways in receiver cells</a></li>
 
+<hr>
+Copy Right @ Kaifu Chen Lab

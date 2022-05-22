@@ -7,7 +7,7 @@
 <li>Current release: 1.0.0</li>
 
 ### Installation
-* download and install miniconda enviroment
+* download and install miniconda enviroment (Users can skip this step if a well python-based environment has been established)
 ```{bash}
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh && bash Miniconda3-latest-MacOSX-x86_64.sh
 

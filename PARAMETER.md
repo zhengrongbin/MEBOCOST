@@ -28,14 +28,13 @@
                         thread=8
                         )
 ```
-* Params for creat_obj
--------
+* Params for create_obj
+
 | Parameter | Default | Data type         | Description |
 | :-------: | :-----: | :---------------: | :-----------|
 |  exp_mat  | None    | pandas data frame | single cell expression matrix, rows are genes, columns are cells, this is exclusive to 'adata' |
-| adata | None | scanpy object (adata) | scanpy adata object, the expression will be extracted, 'adata' is exclusive to 'exp_mat' |
-cell_ann
-    data frame, cell annotation information, cells in row names
+| adata     | None    | scanpy object (adata) | scanpy adata object, the expression will be extracted, 'adata' is exclusive to 'exp_mat' |
+| cell_ann  | None    | python data frame     | data frame, cell annotation information, cells in row names |
 group_col
     a list, specify the column names in 'cell_ann' for grouping cells, by default 'cell_type' or 'cluster' will be detected and used
 species

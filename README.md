@@ -4,6 +4,7 @@
 
 ### Version control
 <li>Current release: 1.0.0</li>
+<p>We keep updating MEBOCOST!!!</p>
 <hr>
 
 ### What is MEBOCOST and hoe does it work?
@@ -49,6 +50,9 @@ python setup.py install
 
 ### Contact
 Rongbin.Zheng@childrens.harvard.edu
+
+or
+
 Kaifu.Chen@childrens.harvard.edu
 
 <hr>

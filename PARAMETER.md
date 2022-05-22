@@ -30,11 +30,10 @@
 ```
 * Params for creat_obj
 -------
-exp_mat
-    python pandas data frame, single cell expression matrix, rows are genes, columns are cells
-    'exp_mat' is a exclusive parameter to 'adata'
-adata
-    scanpy adata object, the expression will be extracted, 'adata' is an exclusive parameter to 'exp_mat'
+| Parameter | Default | Data type | Description
+| :------------------------ |:-------------:| :-------------|
+| exp_mat | None | pandas data frame | single cell expression matrix, rows are genes, columns are cells, this is exclusive to 'adata' |
+| adata | None | scanpy object (adata) | scanpy adata object, the expression will be extracted, 'adata' is exclusive to 'exp_mat' |
 cell_ann
     data frame, cell annotation information, cells in row names
 group_col

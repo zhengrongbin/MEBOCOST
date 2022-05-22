@@ -1,6 +1,7 @@
 <img src="./images/mebocost_logo.png" width="200" height="200" style="align: center"></img>
 
-## Welcome to use MEBOCOST, a python-based package to predict metabolite-based cell-cell communications by single-cell RNA-seq data of tissue samples.
+## Welcome to use MEBOCOST!
+### MEBOCOST is a computational software to predict metabolite-based cell-cell communications by single-cell RNA-seq data of tissue samples.
 
 ### Version control
 <li>Current release: 1.0.0</li>

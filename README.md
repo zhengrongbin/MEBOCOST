@@ -45,8 +45,8 @@ python setup.py install
 
 ### Tutorial for MEBOCOST
 
-<li><a href='https://github.com/zhengrongbin/MEBOCOST/edit/master/Demo_Communication_Prediction.ipynb' target='_blank'>Prediction of cell-cell metabolic communication by scRNA-seq data</a></li>
-<li><a href='https://github.com/zhengrongbin/MEBOCOST/edit/master/Demo_Pathway_Inference.ipynb' target='_blank'>Inference of cell-cell metabolic communication associated pathways in receiver cells</a></li>
+<li><a href='./Demo_Communication_Prediction.ipynb' target='_blank'>Prediction of cell-cell metabolic communication by scRNA-seq data</a></li>
+<li><a href='./Demo_Pathway_Inference.ipynb' target='_blank'>Inference of cell-cell metabolic communication associated pathways in receiver cells</a></li>
 
 ### Contact
 Rongbin.Zheng@childrens.harvard.edu

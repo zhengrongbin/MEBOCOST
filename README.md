@@ -10,6 +10,7 @@
 <p>MEBOCOST is a Python-based computational tool for inferring metabolite mediated cell-cell communication events using single-cell RNA-seq data. Briefly, in the first step, MEBOCOST imputes the relative abundance of metabolites based on the gene expression of metabolic reaction enzymes. The genes of enzymes were collected from Human Metabolome Database (HMDB). Next, MEBOCOST identifies significant communication events between sender and receiver cells with assumption that the senders are highly abundant of metabolite, meanwhile, receivers highly express sensors (the metabolite corresponding receptor or uptaking transporter). Furthermore, MEBOCOST infers communication associated pathways in receiver cells, which we try to link cellular mechanism of receivers in response to the communication events.</p>
 
 #### The Flowchart of MEBOCOST
+<p>Panel A: workflow for predicting cell-cell metabolic communication events taking scRNA-seq data as input. Panel B for pathway association inference for the significant communication events.</p>
 <img src='./images/FlowChart.png' style='margin-left: auto; margin-right: auto;display: block;'></img>
 
 ### Installation

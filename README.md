@@ -6,7 +6,7 @@
 <li>Current release: 1.0.0</li>
 
 ### Installation
-* download miniconda enviroment
+* download and install miniconda enviroment
 ```{bash}
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh && bash Miniconda3-latest-MacOSX-x86_64.sh
 
@@ -35,4 +35,6 @@ python setup.py install
 #### if the mebocost can be imported successfully, you can continue to do analyses by mebocost!
 
 ### Tutorial of MEBOCOST
+
+<li><a href='./Demo_Communication_Prediction.ipynb'>Prediction of cell-cell metabolic communication by scRNA-seq data</a></li>
 

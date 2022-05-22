@@ -1,4 +1,4 @@
-<img src="./images/mebocost_logo.png" width="100" height="100" style="align: center"></img>
+<img src="./images/mebocost_logo.png" width="200" height="200" style="align: center"></img>
 
 ## Welcome to use MEBOCOST, a python-based package to predict metabolite-based cell-cell communications by single-cell RNA-seq data of tissue samples.
 

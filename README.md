@@ -47,6 +47,9 @@ python setup.py install
 <li><a href='./Demo_Communication_Prediction.ipynb'>Prediction of cell-cell metabolic communication by scRNA-seq data</a></li>
 <li><a href='./Demo_Pathway_Inference.ipynb'>Inference of cell-cell metabolic communication associated pathways in receiver cells</a></li>
 
+### Contact
+Rongbin.Zheng@childrens.harvard.edu
+Kaifu.Chen@childrens.harvard.edu
 
 <hr>
-Copy Right @ Kaifu Chen Lab
+Copy Right @ Kaifu Chen Lab @ Boston Childrens Hospital / Harvard Medical School

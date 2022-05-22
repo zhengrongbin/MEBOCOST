@@ -1,6 +1,6 @@
 <img src="./images/mebocost_logo.png" width="200" height="180" style='margin-left: auto; margin-right: auto;display: block;'></img>
 
-## Welcome to use MEBOCOST: Metabolic Cell-Cell Communication Analysis by Single Cell Transcriptome, a computational software to predict metabolite-based cell-cell communications by single-cell RNA-seq data of tissue samples.
+## Welcome to use MEBOCOST: <I>Me</I>ta<I>bo</I>lic Cell-Cell <I>Co</I>mmunication Analysis by <I>S</I>ingle Cell <I>T</I>ranscriptome
 
 ### Version control
 <li>Current release: 1.0.0</li>

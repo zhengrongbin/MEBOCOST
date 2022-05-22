@@ -30,9 +30,9 @@
 ```
 * Params for creat_obj
 -------
-| Parameter | Default | Data type | Description
-| :------------------------ |:-------------:| :-------------|
-| exp_mat | None | pandas data frame | single cell expression matrix, rows are genes, columns are cells, this is exclusive to 'adata' |
+| Parameter | Default | Data type         | Description |
+| :-------: | :-----: | :---------------: | :-----------|
+|  exp_mat  | None    | pandas data frame | single cell expression matrix, rows are genes, columns are cells, this is exclusive to 'adata' |
 | adata | None | scanpy object (adata) | scanpy adata object, the expression will be extracted, 'adata' is exclusive to 'exp_mat' |
 cell_ann
     data frame, cell annotation information, cells in row names

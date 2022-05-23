@@ -29,6 +29,7 @@ import mebocost.crosstalk_plots as CP
 import mebocost.pathway_enrichment as PE
 import mebocost.pathway_plot as PP
 
+
 """
 linking input and out 
 """
@@ -515,7 +516,7 @@ class create_obj:
         cell_count = pd.Series(dict(collections.Counter(self.cell_ann['cell_group'].tolist())))
         bad_cellgroup = cell_count[cell_count<min_cell_number].index.tolist() 
         
-        info('Set p value and fdr to 1 if sensor or metaboltie expressed cell proportion less than {}'.format(self.cutoff_prop))
+        info('Set p value and fdr to 1 if sensor or metaboltie expressed cell proportion less than {}'.format(cutoff_prop))
         bad_index = np.where((pvalue_res['metabolite_prop_in_sender'] <= cutoff_prop) |
                              (pvalue_res['sensor_prop_in_receiver'] <= cutoff_prop) |
                              (pvalue_res['Commu_Score'] < 0) |
@@ -1423,14 +1424,17 @@ class create_obj:
                     ccmap = 'Reds'
                 else:
                     ccmap = cmap
-                if not cbar_title:
-                    cbar_title = 'Mean Expression'
+
+                if cbar_title == '':
+                    sensor_cbar_title = 'Mean Expression'
+                else:
+                    sensor_cbar_title = cbar_title
                 ## data mat for plot
                 dat_mat = pd.merge(exp_dat.T, cell_ann[['cell_group']], left_index = True, right_index = True)
                 fig = CP._violin_plot_(dat_mat=dat_mat, sensor_or_met=list(sensors),
                                        cell_focus = cell_focus, cmap = ccmap,
                                        vmin = vmin, vmax = vmax, figsize = figsize, 
-                                       cbar_title = cbar_title, pdf = Pdf,
+                                       cbar_title = sensor_cbar_title, pdf = Pdf,
                                        show_plot = show_plot, return_fig = return_fig)
 
                 if save is not None and save is not False:
@@ -1472,13 +1476,15 @@ class create_obj:
                         ccmap = 'Purples'
                     else:
                         ccmap = cmap
-                    if not cbar_title:
-                        cbar_title = 'Mean Abundance'
+                    if cbar_title == '':
+                        met_cbar_title = 'Mean Abundance'
+                    else:
+                        met_cbar_title = cbar_title
                         
                     fig = CP._violin_plot_(dat_mat=dat_mat, sensor_or_met=list(metaboliteIds.keys()),
                                      cell_focus = cell_focus, cmap = ccmap,
                                     vmin = vmin, vmax = vmax, figsize = figsize,
-                                    cbar_title = cbar_title, pdf = Pdf,
+                                    cbar_title = met_cbar_title, pdf = Pdf,
                                     show_plot = show_plot, return_fig = return_fig)
 
                     if save is not None and save is not False:

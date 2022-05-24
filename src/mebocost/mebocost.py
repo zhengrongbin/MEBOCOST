@@ -276,7 +276,7 @@ class create_obj:
 
                 cutoff_exp=0,
                 cutoff_met=0,
-                cutoff_prop=0.1,
+                cutoff_prop=0.25,
 
                 sensor_type=['Receptor', 'Transporter', 'Nuclear Receptor'],
                 thread = 1

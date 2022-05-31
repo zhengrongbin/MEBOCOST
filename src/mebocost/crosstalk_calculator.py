@@ -319,11 +319,11 @@ class InferComm:
         """
         stat, pval = 0, 1
         if method == 'ztest':
-            stat, pval = statsmodels.api.stats.ztest(bg_values,
+            stat, pval = sm.stats.ztest(bg_values,
                                     value = real_score, 
                                     alternative = "smaller")
         elif method == 'ttest':
-            stat, pval, df = statsmodels.api.stats.ttest_ind(x1 = bg_values,
+            stat, pval, df = sm.stats.ttest_ind(x1 = bg_values,
                                     x2 = [real_score], 
                                     alternative = "smaller")
         elif method == 'ranksum_test':

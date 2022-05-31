@@ -7,3 +7,4 @@ adjustText~=0.7.3
 networkx~=2.7
 jupyter~=1.0.0
 xlmhg~=2.5.4
+statsmodels~=0.13.1

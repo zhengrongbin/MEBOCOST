@@ -650,7 +650,8 @@ class create_obj:
                       seed = 12345, 
                       Return = True, 
                       thread = None,
-                      save_permuation = False
+                      save_permuation = False,
+                      min_cell_number = 50
                      ):
         """
         execute mebocost to infer communications
@@ -671,6 +672,10 @@ class create_obj:
             
         save_permuation
             True or False, set True to save the communication score for each permutation, this could occupy a higher amount of space when saving out, so default is False
+
+        min_cell_number
+            int, the cell groups will be excluded and p-value will be replaced to 1 if there are not enough number of cells (less than min_cell_number), default is 50
+
         """
         tic = time.time()
         today = datetime.today().strftime("%B %d, %Y")
@@ -715,7 +720,8 @@ class create_obj:
         commu_res_df_updated = self._filter_lowly_aboundant_(pvalue_res = commu_res_df,
                                                              cutoff_prop = self.cutoff_prop,
                                                              met_prop=self.met_prop, 
-                                                             exp_prop=self.exp_prop)
+                                                             exp_prop=self.exp_prop,
+                                                             min_cell_number = min_cell_number)
         ## update self
         self.commu_res = commu_res_df_updated
         

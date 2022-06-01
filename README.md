@@ -17,7 +17,7 @@
 <img src='./images/FlowChart.png' style='margin-left: auto; margin-right: auto;display: block;'></img>
 
 ### Installation
-* download and install miniconda enviroment (Users can skip this step if a well python-based environment has been established)
+* download and install miniconda enviroment (Users can skip this step if a python-based environment has been well-established)
 ```{bash}
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh && bash Miniconda3-latest-MacOSX-x86_64.sh
 

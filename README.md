@@ -5,11 +5,9 @@
 ### 2020-05-22
 
 ### Version control
-<li>Current release: 1.0.1</li>
-<input type="checkbox" checked />  add a "min_cell_number" parameter to enable the exclusion of cell groups that do not have enough cell numbers
-
-<br>
 <p>We keep updating MEBOCOST!!!</p>
+<li>Current release: 1.0.1</li>
+[x] add a "min_cell_number" parameter to enable the exclusion of cell groups that do not have enough cell numbers
 <hr>
 
 ### What is MEBOCOST and hoe does it work?

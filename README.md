@@ -2,8 +2,6 @@
 
 ## Welcome to use MEBOCOST: <I>Me</I>ta<I>bo</I>lic Cell-Cell <I>Co</I>mmunication Modeling by <I>S</I>ingle Cell <I>T</I>ranscriptome
 
-### 2020-05-22
-
 ### Version control
 <p>We keep updating MEBOCOST!!!</p>
 <li>Current release: 1.0.1</li>

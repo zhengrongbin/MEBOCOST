@@ -6,7 +6,7 @@
 
 ### Version control
 <li>Current release: 1.0.1</li>
--[x] add a "min_cell_number" parameter to enable the exclusion of cell groups that do not have enough cell numbers
+<input type="checkbox" disabled checked />  add a "min_cell_number" parameter to enable the exclusion of cell groups that do not have enough cell numbers
 
 <p>We keep updating MEBOCOST!!!</p>
 <hr>

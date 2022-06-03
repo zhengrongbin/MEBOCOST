@@ -1574,7 +1574,7 @@ class create_obj:
                                                                                                   sensor_sel.value,
                                                                                                   receiver_sel.value))
                 and_or = logic_butt.value
-                
+        
                 self.FlowPlot(pval_method=pval_method,
                             pval_cutoff=pval_cutoff,
                             sender_focus = [x for x in sender_sel.value if x != 'All'],
@@ -1593,7 +1593,7 @@ class create_obj:
                             node_size_norm = (10, 150),
                             linewidth_norm = (0.5, 5),
                             save=None, 
-                            show_plot = False,
+                            show_plot = True,
                             comm_score_col = comm_score_col,
                             comm_score_cutoff = comm_score_cutoff,
                             cutoff_prop = cutoff_prop,

@@ -1575,7 +1575,7 @@ class create_obj:
                                                                                                   receiver_sel.value))
                 and_or = logic_butt.value
                 
-               self.FlowPlot(pval_method=pval_method,
+                self.FlowPlot(pval_method=pval_method,
                             pval_cutoff=pval_cutoff,
                             sender_focus = [x for x in sender_sel.value if x != 'All'],
                             metabolite_focus = [x for x in metabolite_sel.value if x != 'All'],

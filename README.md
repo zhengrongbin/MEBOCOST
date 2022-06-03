@@ -8,6 +8,7 @@
 - add a "min_cell_number" parameter to enable the exclusion of cell groups that do not have enough cell numbers
 - fixed bug for notebook visualization for flow plot
 <hr>
+
 ### To re-install and upgrade by pip if you have existing MEBOCOST installed
 ```
 pip uninstall mebocost

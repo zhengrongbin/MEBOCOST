@@ -1574,30 +1574,33 @@ class create_obj:
                                                                                                   sensor_sel.value,
                                                                                                   receiver_sel.value))
                 and_or = logic_butt.value
-                self.FlowPlot(pval_method=pval_method,
-                                pval_cutoff=pval_cutoff,
-                                sender_focus = [x for x in sender_sel.value if x != 'All'],
-                                metabolite_focus = [x for x in metabolite_sel.value if x != 'All'],
-                                sensor_focus = [x for x in sensor_sel.value if x != 'All'],
-                                receiver_focus = [x for x in receiver_sel.value if x != 'All'],
-                                remove_unrelevant = True,
-                                and_or = and_or,
-                                node_color = [],
-                                node_label_size = 8,
-                                node_alpha = .8,
-                                figsize = 'auto',
-                                node_cmap = 'Set1',
-                                line_cmap = 'bwr',
-                                node_size_norm = (10, 150),
-                                linewidth_norm = (0.5, 5),
-                                save=None, 
-                                show_plot = True,
-                                comm_score_col = comm_score_col,
-                                comm_score_cutoff = comm_score_cutoff,
-                                cutoff_prop = cutoff_prop,
-                                text_outline = False
-                               )
-
+                
+               self.FlowPlot(pval_method=pval_method,
+                            pval_cutoff=pval_cutoff,
+                            sender_focus = [x for x in sender_sel.value if x != 'All'],
+                            metabolite_focus = [x for x in metabolite_sel.value if x != 'All'],
+                            sensor_focus = [x for x in sensor_sel.value if x != 'All'],
+                            receiver_focus = [x for x in receiver_sel.value if x != 'All'],
+                            remove_unrelevant = True,
+                            and_or = and_or,
+                            node_label_size = 8,
+                            node_alpha = .8,
+                            figsize = 'auto',
+                            node_cmap = 'Set1',
+                            line_cmap = 'bwr',
+                            line_vmin = None,
+                            line_vmax = None,
+                            node_size_norm = (10, 150),
+                            linewidth_norm = (0.5, 5),
+                            save=None, 
+                            show_plot = False,
+                            comm_score_col = comm_score_col,
+                            comm_score_cutoff = comm_score_cutoff,
+                            cutoff_prop = cutoff_prop,
+                            text_outline = False,
+                            return_fig = False)
+                
+                
         def _networkplot_filter_(b):
             with outt:
                 clear_output()

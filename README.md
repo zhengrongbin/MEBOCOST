@@ -8,6 +8,11 @@
 - add a "min_cell_number" parameter to enable the exclusion of cell groups that do not have enough cell numbers
 - fixed bug for notebook visualization for flow plot
 <hr>
+### To re-install and upgrade by pip if you have existing MEBOCOST installed
+```
+pip uninstall mebocost
+pip install git+https://github.com/zhengrongbin/MEBOCOST.git --upgrade
+```
 
 ### What is MEBOCOST and hoe does it work?
 <p>MEBOCOST is a Python-based computational tool for inferring metabolite, such as lipid, mediated cell-cell communication events using single-cell RNA-seq data. Briefly, in the first step, MEBOCOST imputes the relative abundance of metabolites based on the gene expression of metabolic reaction enzymes. The genes of enzymes were collected from Human Metabolome Database (HMDB). Next, MEBOCOST identifies cell-cell metabolite-sensor communications between cell groups, in which metabolite enzymes and sensors were highly expressed in sender and receiver cells, respectively. Furthermore, MEBOCOST can infer communication associated pathways in receiver cells, which we try to link cellular mechanism of receivers in response to the communication events.</p>

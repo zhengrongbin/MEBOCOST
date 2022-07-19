@@ -12,9 +12,11 @@
 ### Version control
 <p>We keep updating MEBOCOST!!!</p>
 <li>Current release: 1.0.2</li>
+
 - fixed bugs in background estimation
 - automated decision of cutoffs to exclude lowly ranked 25% sensors or metabolites across all cells, cutoffs can still be specified by users
 - add parameters in plot functions, including show_num in eventnum_bar
+
 <hr>
 
 ### Installation

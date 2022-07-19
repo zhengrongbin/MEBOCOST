@@ -136,9 +136,9 @@ class InferComm:
         permutation to generate random backgroud
         """
         ## intersect cells in exp_mat, met_mat, and cell_ann
-        common_cell = list(set(self.exp_mat_columns.tolist()) & 
-                          set(self.met_mat_columns.tolist()) &
-                          set(self.cell_ann.index.tolist()))
+        common_cell = sorted(list(set(self.exp_mat_columns.tolist()) & 
+                              set(self.met_mat_columns.tolist()) &
+                              set(self.cell_ann.index.tolist())))
         ## cell ann
         self.cell_ann = self.cell_ann.loc[common_cell,:]
         ## exp
@@ -391,7 +391,7 @@ class InferComm:
         sensor_perm_loc = self.permute_exp_indexer.tolist().index(sensor)
         perm_exp_avg_sensor = {i:self.perm_exp_avg[i][sensor_perm_loc].toarray()[0] for i in self.perm_exp_avg}
         
-        met_perm_loc = self.permute_exp_indexer.tolist().index(sensor)
+        met_perm_loc = self.permute_met_indexer.tolist().index(met)
         perm_met_avg_met = {i:self.perm_met_avg[i][met_perm_loc].toarray()[0] for i in self.perm_met_avg}
         
         commu_mat, background_df = self._commu_score_for_one_(

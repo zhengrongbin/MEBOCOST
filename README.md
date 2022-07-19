@@ -3,17 +3,18 @@
 ## Welcome to use MEBOCOST: <I>Me</I>ta<I>bo</I>lic Cell-Cell <I>Co</I>mmunication Modeling by <I>S</I>ingle Cell <I>T</I>ranscriptome
 
 ### What is MEBOCOST and hoe does it work?
-<p>MEBOCOST is a Python-based computational tool for inferring metabolite, such as lipid, mediated cell-cell communication events using single-cell RNA-seq data. Briefly, in the first step, MEBOCOST imputes the relative abundance of metabolites based on the gene expression of metabolic reaction enzymes. The genes of enzymes were collected from Human Metabolome Database (HMDB). Next, MEBOCOST identifies cell-cell metabolite-sensor communications between cell groups, in which metabolite enzymes and sensors were highly expressed in sender and receiver cells, respectively. Furthermore, MEBOCOST can infer communication associated pathways in receiver cells, which we try to link cellular pathways of receivers in response to the communication events.</p>
+<p>MEBOCOST is a Python-based computational tool for inferring metabolite, such as lipid, mediated cell-cell communication events using single-cell RNA-seq data. Briefly, in the first step, MEBOCOST imputes the relative abundance of metabolites based on the gene expression of metabolic reaction enzymes. The genes of enzymes were collected from Human Metabolome Database (HMDB). Next, MEBOCOST identifies cell-cell metabolite-sensor communications between cell groups, in which metabolite enzymes and sensors were highly expressed in sender and receiver cells, respectively.</p>
 
 #### The Flowchart of MEBOCOST
-<p>Panel A: workflow for predicting cell-cell metabolic communication events taking scRNA-seq data as input. Panel B for pathway association inference for the significant communication events.</p>
-<img src='./images/FlowChart.png' style='margin-left: auto; margin-right: auto;display: block;'></img>
+<p>workflow for predicting cell-cell metabolic communication events taking scRNA-seq data as input.</p>
+<img src='./images/mebocost_flowchart.png' style='margin-left: auto; margin-right: auto;display: block;'></img>
 
 ### Version control
 <p>We keep updating MEBOCOST!!!</p>
-<li>Current release: 1.0.1</li>
-- add a "min_cell_number" parameter to enable the exclusion of cell groups that do not have enough cell numbers
-- fixed bug for notebook visualization for flow plot
+<li>Current release: 1.0.2</li>
+- fixed bugs in background estimation
+- automated decision of cutoffs to exclude lowly ranked 25% sensors or metabolites across all cells, cutoffs can still be specified by users
+- add parameters in plot functions, including show_num in eventnum_bar
 <hr>
 
 ### Installation
@@ -56,7 +57,7 @@ pip install git+https://github.com/zhengrongbin/MEBOCOST.git --upgrade
 ### Tutorial for MEBOCOST
 
 <li><a href='./Demo_Communication_Prediction.ipynb' target='_blank'>Prediction of cell-cell metabolic communication by scRNA-seq data</a></li>
-<li><a href='./Demo_Pathway_Inference.ipynb' target='_blank'>Inference of cell-cell metabolic communication associated pathways in receiver cells</a></li>
+<li><a href='./Demo_Pathway_Inference.ipynb' target='_blank'>Inference of cell-cell metabolic communication associated pathways in receiver cells (in development and only Python3.8 supported)</a></li>
 
 ### Cite us
 <p>Please cite us at <a href='https://www.biorxiv.org/content/10.1101/2022.05.30.494067v1' target='_blank'>bioRxiv</a> if you find MEBOCOST is useful to your project.</p>

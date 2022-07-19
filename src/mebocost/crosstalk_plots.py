@@ -573,7 +573,7 @@ def _count_dot_plot_(commu_res,
         Malignant_1->Malignant_0    1.359778
         CD8Tex_3->Malignant_0   1.347078
 
-    cmap: colormap for dot color representing overall confidence of communication between cells
+    cmap: colormap for dot color representing overall score of communication between cells
     """
     ## clean
     plt.close()
@@ -662,7 +662,7 @@ def _count_dot_plot_(commu_res,
     cbar = plt.colorbar(sp, ax = sidelower,
                         location = 'top',
                        shrink = .7)
-    cbar.set_label(label = 'Overall Confidence', 
+    cbar.set_label(label = 'Overall Score', 
                    fontsize = 10)
 
     ## legend for dot size
@@ -735,7 +735,7 @@ def _commu_network_plot_(commu_res,
         Malignant_12->Malignant_0   16  21.788151   Malignant_12    Malignant_0
         Malignant_1->Malignant_0    10  13.598459   Malignant_1 Malignant_0
 
-    line_cmap: line color map, usually for the overall confidence (-log10(pvalue)) for the connection
+    line_cmap: line color map, usually for the overall score, a sum of -log10(pvalue) for all metabolite-sensor communications to the connection
     node_cmap: node color map, usually for different type of cells
     figsize: a tuple to indicate the width and height for the figure, default is automatically estimate
     sender_col: column names for sender cells
@@ -927,7 +927,7 @@ def _commu_network_plot_(commu_res,
     sm = matplotlib.cm.ScalarMappable(cmap=plt.cm.get_cmap(line_cmap), norm = edge_color_norm)
     sm.set_array([])
     cbar = plt.colorbar(sm, shrink = .5, location = 'left')
-    cbar.set_label(label='Overall Confidence',fontsize = 10)
+    cbar.set_label(label='Overall Score',fontsize = 10)
     rightfig.axis('off')
     pdf.savefig(fig) if pdf else None
     if show_plot:
@@ -1035,7 +1035,7 @@ def _violin_plot_(dat_mat,
         return(fig)
     
 def _count_stacked_bar_(tdf, figsize, title='', legend_loc='upper right',
-                        ylabel = 'Number of Communications',
+                        ylabel = 'Number of Metabolite-Sensor Communication',
                        colorcmap = 'tab20', pdf = None, show_plot = False,
                        return_fig = False):
     xorder = tdf.sum().sort_values(ascending = False).index.tolist()
@@ -1092,7 +1092,7 @@ def _count_stacked_bar_(tdf, figsize, title='', legend_loc='upper right',
         return(fig)
 
 def _count_bar_(tdf, figsize, title='', color='pink',
-                ylabel = 'Number of Communications', 
+                ylabel = 'Number of Metabolite-Sensor Communication', 
                 pdf=None, show_plot = False, return_fig = False):
     fig, ax = plt.subplots(figsize = figsize)
     xtick = list(np.arange(0, len(tdf) * 2, 2))
@@ -1140,6 +1140,7 @@ def _eventnum_bar_(commu_res,
                     cutoff_prop = None,
                     figsize = 'auto',
                     pdf = None,
+                    show_num = True,
                     show_plot = True,
                     include = ['sender-receiver', 'sensor', 'metabolite'],
                     group_by_cell = False,
@@ -1209,22 +1210,23 @@ def _eventnum_bar_(commu_res,
         ax.bar(xtick2, df['Receiver'], 
                     color = colmap['Receiver'],
                    label = 'Receiver')
-        for i in range(len(xtick1)):
-            ax.text(x=xtick1[i], y=df.iloc[i]['Sender'],
-                    s=int(df.iloc[i]['Sender']),
-                    rotation = 0, 
-                    ha = 'center',
-                    va = 'bottom',
-                    fontsize = 8
-                   )
-        for i in range(len(xtick2)):
-            ax.text(x=xtick2[i], y=df.iloc[i]['Receiver'],
-                    s=int(df.iloc[i]['Receiver']),
-                    rotation = 0, 
-                    ha = 'center',
-                    va = 'bottom',
-                    fontsize = 8
-                   )
+        if show_num is True:
+            for i in range(len(xtick1)):
+                ax.text(x=xtick1[i], y=df.iloc[i]['Sender'],
+                        s=int(df.iloc[i]['Sender']),
+                        rotation = 90, 
+                        ha = 'center',
+                        va = 'bottom',
+                        fontsize = 8
+                       )
+            for i in range(len(xtick2)):
+                ax.text(x=xtick2[i], y=df.iloc[i]['Receiver'],
+                        s=int(df.iloc[i]['Receiver']),
+                        rotation = 90, 
+                        ha = 'center',
+                        va = 'bottom',
+                        fontsize = 8
+                       )
         plt.xticks(ticks = xtick,
                          labels = df.index.tolist())
 
@@ -1233,9 +1235,9 @@ def _eventnum_bar_(commu_res,
         ax.tick_params(axis = 'y', which = 'major',
                        rotation = 0, size = 10)
         ax.set_xlabel('')
-        ax.set_ylabel('Number of Communications', size = 12)
-        ax.set_title('Event number of cell group as sender or receiver',
-                    pad = 10, fontweight = 'bold')
+        ax.set_ylabel('Number of Metabolite-Sensor Communication', size = 12)
+        # ax.set_title('Event number of cell group as sender or receiver',
+        #             pad = 10, fontweight = 'bold')
         sns.despine(trim = True)
         ax.legend(#bbox_to_anchor=(1, .9),
                      frameon = False,

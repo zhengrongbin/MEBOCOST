@@ -239,10 +239,10 @@ class create_obj:
         a path, this parameter can be provided in config file and given by config_path. Only set this when you do not pass config_path parameter in. The gmt file contains pathway gene list, will be used in pathway inference module, the details of GMT format could be found at https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#:~:text=The+GMT+file+format+is,genes+in+the+gene+set. 
 
     cutoff_exp
-        float, used to filter out cells which are lowly expressed for the given gene
+        auto or float, used to filter out cells which are lowly expressed for the given gene, by default is auto, meaning that automatically decide cutoffs for sensor expression to exclude the lowly 25% non-zeros across all sensor or metabolites in all cells in addition to zeros 
 
     cutoff_met
-        float, used to filter out cells which are lowly abundant of the given metabolite
+        auto or float, used to filter out cells which are lowly abundant of the given metabolite, by default is auto, meaning that automatically decide cutoffs for metabolite presence to exclude the lowly 25% non-zeros across all sensor or metabolites in all cells in addition to zeros 
 
     cutoff_prop
         float from 0 to 1, used to filter out metabolite or genes if the proportion of their abundant cells less than the cutoff
@@ -274,8 +274,8 @@ class create_obj:
                 gene_network=pd.DataFrame(),
                 gmt_path = None,
 
-                cutoff_exp=0,
-                cutoff_met=0,
+                cutoff_exp='auto',
+                cutoff_met='auto',
                 cutoff_prop=0.25,
 
                 sensor_type=['Receptor', 'Transporter', 'Nuclear Receptor'],
@@ -503,34 +503,35 @@ class create_obj:
         change p value to 1 if either metabolite_prop or transporter_prop equal to 0 
         (meaning that no metabolite or transporter level in the cluster)
         """
+        res = pvalue_res.copy()
         ## add the metabolite abudance proportion
         if met_prop is not None:
-            pvalue_res['metabolite_prop_in_sender'] = [met_prop.loc[s, m] for s, m in pvalue_res[['Sender', 'Metabolite']].values.tolist()]
+            res['metabolite_prop_in_sender'] = [met_prop.loc[s, m] for s, m in res[['Sender', 'Metabolite']].values.tolist()]
         ## add the metabolite abudance proportion
         if exp_prop is not None:
-            pvalue_res['sensor_prop_in_receiver'] = [exp_prop.loc[r, s] for r, s in pvalue_res[['Receiver', 'Sensor']].values.tolist()]
+            res['sensor_prop_in_receiver'] = [exp_prop.loc[r, s] for r, s in res[['Receiver', 'Sensor']].values.tolist()]
         
         if 'original_result' not in list(vars(self)):
-            self.original_result = pvalue_res.copy()
+            self.original_result = res.copy()
         ## minimum cell number
         cell_count = pd.Series(dict(collections.Counter(self.cell_ann['cell_group'].tolist())))
         bad_cellgroup = cell_count[cell_count<min_cell_number].index.tolist() 
         
         info('Set p value and fdr to 1 if sensor or metaboltie expressed cell proportion less than {}'.format(cutoff_prop))
-        bad_index = np.where((pvalue_res['metabolite_prop_in_sender'] <= cutoff_prop) |
-                             (pvalue_res['sensor_prop_in_receiver'] <= cutoff_prop) |
-                             (pvalue_res['Commu_Score'] < 0) |
-                             (pvalue_res['Sender'].isin(bad_cellgroup)) | 
-                             (pvalue_res['Receiver'].isin(bad_cellgroup))
+        bad_index = np.where((res['metabolite_prop_in_sender'] <= cutoff_prop) |
+                             (res['sensor_prop_in_receiver'] <= cutoff_prop) |
+                             (res['Commu_Score'] < 0) |
+                             (res['Sender'].isin(bad_cellgroup)) | 
+                             (res['Receiver'].isin(bad_cellgroup))
                             )[0]
         if len(bad_index) > 0:
-            pval_index = np.where(pvalue_res.columns.str.endswith('_pval'))[0]
-            pvalue_res.iloc[bad_index, pval_index] = 1 # change to 1
-            fdr_index = np.where(pvalue_res.columns.str.endswith('_fdr'))[0]
-            pvalue_res.iloc[bad_index, fdr_index] = 1 # change to 1
+            pval_index = np.where(res.columns.str.endswith('_pval'))[0]
+            res.iloc[bad_index, pval_index] = 1 # change to 1
+            fdr_index = np.where(res.columns.str.endswith('_fdr'))[0]
+            res.iloc[bad_index, fdr_index] = 1 # change to 1
         
         ## norm communication score
-        pvalue_res['Commu_Score'] = pvalue_res['Commu_Score']/np.array(pvalue_res['bg_mean']).clip(min = 0.05)
+        res['Commu_Score'] = res['Commu_Score']/np.array(res['bg_mean']).clip(min = 0.05)
         
         ## reorder columns
         columns = ['Sender', 'Metabolite', 'Metabolite_Name', 
@@ -543,10 +544,26 @@ class create_obj:
                    'permutation_test_stat', 'permutation_test_pval',
                    'ztest_fdr', 'ttest_fdr', 'ranksum_test_fdr',
                    'permutation_test_fdr']
-        get_columns = [x for x in columns if x in pvalue_res.columns.tolist()]
-        pvalue_res = pvalue_res.reindex(columns = get_columns).sort_values('permutation_test_fdr')
-        
-        return(pvalue_res)
+        get_columns = [x for x in columns if x in res.columns.tolist()]
+        res = res.reindex(columns = get_columns).sort_values('permutation_test_fdr')
+        return(res)
+
+    def _auto_cutoff_(self, mat, q = 0.25):
+        """
+        given a matrix, such as gene-by-cell matrix,
+        find 25% percentile value as a cutoff
+        meaning that, for example, sensor in cell with lowest 25% expression will be discarded, by default.
+        """
+        v = []
+        for x in mat:
+            if np.all(x.toarray() <= 0):
+                continue
+            xx = x.toarray()
+            xx = xx[xx>0]
+            v.extend(xx.tolist())
+        v = np.array(sorted(v))
+        c = np.quantile(v, q)
+        return(c)
 
 
     def _check_aboundance_(self, cutoff_exp=None, cutoff_met=None):
@@ -557,10 +574,60 @@ class create_obj:
         """
         info('Calculating aboundance of metabolite and sensor expression in cell groups')
         ## this will re-write the begin values
-        if not cutoff_exp:
-            cutoff_exp = self.cutoff_exp if isinstance(self.cutoff_exp, float) else 0
-        if not cutoff_met:
-            cutoff_met = self.cutoff_met if isinstance(self.cutoff_met, float) else 0
+        j1 = cutoff_exp is None or cutoff_exp is False
+        j2 = self.cutoff_exp is None or self.cutoff_exp is False
+        j3 = self.cutoff_exp == 'auto'
+        j4 = isinstance(self.cutoff_exp, float) or isinstance(self.cutoff_exp, int)
+
+        if cutoff_exp == 'auto':
+            # decide cutoff by taking 75% percentile across all sensor in all cells
+            sensor_loc = np.where(self.exp_mat_indexer.isin(self.met_sensor['Gene_name']))[0]
+            sensor_mat = self.exp_mat[sensor_loc,:]
+            cutoff_exp = self._auto_cutoff_(mat = sensor_mat)
+            self.cutoff_exp = cutoff_exp
+            info('automated cutoff for sensor expression, cutoff=%s'%cutoff_exp)
+        elif j1 and (j2 or j3):
+            ## decide cutoff by taking 75% percentile across all sensor in all cells
+            sensor_loc = np.where(self.exp_mat_indexer.isin(self.met_sensor['Gene_name']))[0]
+            sensor_mat = self.exp_mat[sensor_loc,:]
+            cutoff_exp = self._auto_cutoff_(mat = sensor_mat)
+            self.cutoff_exp = cutoff_exp
+            info('automated cutoff for sensor expression, cutoff=%s'%cutoff_exp)
+        elif j1 and j4:
+            cutoff_exp = self.cutoff_exp 
+            info('provided cutoff for sensor expression, cutoff=%s'%cutoff_exp)
+        elif j1 and j2:
+            cutoff_exp = 0
+            info('cutoff for sensor expression, cutoff=%s'%cutoff_exp)
+        else:
+            cutoff_exp = 0 if not cutoff_exp else cutoff_exp
+            info('cutoff for sensor expression, cutoff=%s'%cutoff_exp)
+        ## met 
+        j1 = cutoff_met is None or cutoff_met is False
+        j2 = self.cutoff_met is None or self.cutoff_met is False
+        j3 = self.cutoff_met == 'auto'
+        j4 = isinstance(self.cutoff_met, float) or isinstance(self.cutoff_met, int)
+
+        if cutoff_met == 'auto':
+            ## decide cutoff by taking 75% percentile across all sensor in all cells
+            cutoff_met = self._auto_cutoff_(mat = self.met_mat)
+            self.cutoff_met = cutoff_met
+            info('automated cutoff for metabolite presence, cutoff=%s'%cutoff_met)
+        elif j1 and (j2 or j3):
+            ## decide cutoff by taking 75% percentile across all sensor in all cells
+            cutoff_met = self._auto_cutoff_(mat = self.met_mat)
+            self.cutoff_met = cutoff_met
+            info('automated cutoff for metabolite presence, cutoff=%s'%cutoff_met)
+        elif j1 and j4:
+            cutoff_met = self.cutoff_met 
+            info('provided cutoff for metabolite presence, cutoff=%s'%cutoff_met)
+        elif j1 and j2:
+            cutoff_met = 0
+            info('cutoff for metabolite presence, cutoff=%s'%cutoff_met)
+        else:
+            cutoff_met = 0 if not cutoff_met else cutoff_met
+            info('cutoff for metabolite presence, cutoff=%s'%cutoff_met)
+
         ## expression for all transporters
         sensors = self.met_sensor['Gene_name'].unique().tolist()
         info('cutoff_exp: {}'.format(cutoff_exp))
@@ -574,10 +641,7 @@ class create_obj:
             exp_prop[x] = pd.Series([v[v>cutoff_exp].shape[1] / v.shape[1] for v in s],
                                    index = list(sensor_loc.keys()))
         exp_prop = pd.DataFrame.from_dict(exp_prop, orient = 'index')
-            
-#         emat = pd.merge(exp_df.reindex(index = sensors).T, self.cell_ann[['cell_group']],left_index = True, right_index = True)
-#         exp_prop = emat.groupby('cell_group').apply(lambda df: df.apply(lambda col: len(col[col>cutoff_exp]) / len(col))) ## the proportion of gene expressing cells
-        
+         
         # ====================== #
         info('cutoff_metabolite: {}'.format(cutoff_met))
         ## metabolite aboundance
@@ -636,7 +700,7 @@ class create_obj:
 
         for x in group_names:
             cells = self.cell_ann[self.cell_ann['cell_group'] == x].index.tolist()
-            cell_loc = cell_loc = np.where(pd.Series(self.met_mat_columns).isin(cells))[0]
+            cell_loc = np.where(pd.Series(self.met_mat_columns).isin(cells))[0]
             ## mean
             avg_met = np.concatenate((avg_met, self.met_mat[:,cell_loc].mean(axis = 1)), axis = 1)
 
@@ -855,6 +919,7 @@ class create_obj:
                     figsize = 'auto',
                     save = None,
                     show_plot = True,
+                    show_num = True,
                     include = ['sender-receiver', 'sensor', 'metabolite', 'metabolite-sensor'],
                     group_by_cell = True,
                     colorcmap = 'tab20',
@@ -885,6 +950,8 @@ class create_obj:
             str, the file name to save the figure
         show_plot
              True or False, whether print the figure on the screen
+        show_num
+            True or False, whether label y-axis value to the top of each bar
         comm_score_col
             column name of communication score, can be Commu_Score
         comm_score_cutoff
@@ -924,12 +991,13 @@ class create_obj:
                     figsize = figsize,
                     pdf = Pdf,
                     show_plot = show_plot,
+                    show_num = show_num,
                     include = include,
                     group_by_cell = group_by_cell,
                     colorcmap = colorcmap,
                     return_fig = return_fig
                   )
-        if save is not None and save is not False:
+        if save is not None and save is not False and isinstance(save, str):
             Pdf.close()
         if return_fig:
             return(fig)
@@ -998,7 +1066,7 @@ class create_obj:
                  obs_color = obs_color, figsize = figsize, comm_score_col = comm_score_col,
                             return_fig = return_fig)
 
-        if save is not None and save is not False:
+        if save is not None and save is not False and isinstance(save, str):
             Pdf.close()
         if return_fig:
             return(fig)
@@ -1089,7 +1157,7 @@ class create_obj:
                      swap_axis = swap_axis,
                      return_fig = return_fig
                     )
-        if save is not None and save is not False:
+        if save is not None and save is not False and isinstance(save, str):
             Pdf.close()
         if return_fig:
             return(fig)
@@ -1188,7 +1256,7 @@ class create_obj:
                       node_size_norm = node_size_norm, pdf=Pdf, show_plot = show_plot, 
                       comm_score_col = comm_score_col, comm_score_cutoff = comm_score_cutoff, cutoff_prop = cutoff_prop,
                       text_outline = text_outline, return_fig = return_fig)
-        if save is not None and save is not False:
+        if save is not None and save is not False and isinstance(save, str):
             Pdf.close()
         if return_fig:
             return(fig)
@@ -1255,7 +1323,7 @@ class create_obj:
                         dot_color_vmin = dot_color_vmin, dot_color_vmax = dot_color_vmax, show_plot = show_plot,
                         comm_score_col = comm_score_col, comm_score_cutoff = comm_score_cutoff, cutoff_prop = cutoff_prop,
                         return_fig = return_fig)
-        if save is not None and save is not False:
+        if save is not None and save is not False and isinstance(save, str):
             Pdf.close()
         if return_fig:
             return(fig)
@@ -1357,7 +1425,7 @@ class create_obj:
                             comm_score_col = comm_score_col, comm_score_cutoff = comm_score_cutoff, cutoff_prop = cutoff_prop,
                             node_text_font = node_text_font, pdf = Pdf, show_plot = show_plot, text_outline = text_outline,
                             return_fig = return_fig)
-        if save is not None and save is not False:
+        if save is not None and save is not False and isinstance(save, str):
             Pdf.close()
         
         if return_fig:
@@ -1443,7 +1511,7 @@ class create_obj:
                                        cbar_title = sensor_cbar_title, pdf = Pdf,
                                        show_plot = show_plot, return_fig = return_fig)
 
-                if save is not None and save is not False:
+                if save is not None and save is not False and isinstance(save, str):
                     Pdf.close()
                 if return_fig:
                     return(fig)
@@ -1493,7 +1561,7 @@ class create_obj:
                                     cbar_title = met_cbar_title, pdf = Pdf,
                                     show_plot = show_plot, return_fig = return_fig)
 
-                    if save is not None and save is not False:
+                    if save is not None and save is not False and isinstance(save, str):
                         Pdf.close()
                     if return_fig:
                         return(fig)
@@ -1764,7 +1832,7 @@ class create_obj:
                     figsize = figsize, title = title, maxSize = maxSize, minSize = minSize,
                     pdf = Pdf, show_plot = show_plot, return_fig = return_fig)
         
-        if save is not None and save is not False:
+        if save is not None and save is not False and isinstance(save, str):
             Pdf.close()
         if return_fig:
             return(fig)
@@ -1843,7 +1911,7 @@ class create_obj:
                          title = title, maxSize = maxSize, minSize = minSize, colors = colors,
                          pdf = Pdf, show_plot = show_plot, return_fig = return_fig)
                 
-        if save is not None and save is not False:
+        if save is not None and save is not False and isinstance(save, str):
             Pdf.close()
         if return_fig:
             return(fig)
@@ -1919,7 +1987,7 @@ class create_obj:
                     figsize = figsize, title = title, maxSize = maxSize, minSize = minSize, pdf = Pdf,
                     show_plot = show_plot, swap_axis = swap_axis, return_fig = return_fig)
         
-        if save is not None and save is not False:
+        if save is not None and save is not False and isinstance(save, str):
             Pdf.close()    
         if return_fig:
             return(fig)
@@ -2033,7 +2101,7 @@ class create_obj:
         if a_pair not in cellpairs and a_pair not in sensor_receivers:
             raise KeyError('ERROR to read given a_pair!')
         
-        if save is not None and save is not False:
+        if save is not None and save is not False and isinstance(save, str):
             Pdf.close()    
         
         if return_data and return_fig:

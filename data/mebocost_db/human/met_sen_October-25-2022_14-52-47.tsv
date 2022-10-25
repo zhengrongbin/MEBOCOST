@@ -131,20 +131,12 @@ ID	HMDB_ID	standard_metName	metName	Gene_name	Protein_name	Evidence	Annotation
 131	HMDB0000112	gamma-Aminobutyric acid	gamma-Aminobutyric acid	GABRA1	Gamma-aminobutyric acid receptor subunit alpha-1	30891080	Receptor
 132	HMDB0000112	gamma-Aminobutyric acid	gamma-Aminobutyric acid	GABRA4	Gamma-aminobutyric acid receptor subunit alpha-4	33594062	Receptor
 133	HMDB0000112	gamma-Aminobutyric acid	gamma-Aminobutyric acid	GABRB2	Gamma-aminobutyric acid receptor subunit beta-2	33594062	Receptor
-134	HMDB0000067	Cholesterol	Cholesterol	ABCB1	ATP-dependent translocase ABCB1	HMDB	Transporter
-135	HMDB0000125	Glutathione	Glutathione	ABCC1	Multidrug resistance-associated protein 1	HMDB	Transporter
-136	HMDB0000125	Glutathione	Glutathione	ABCC2	ATP-binding cassette sub-family C member 2	HMDB	Transporter
-137	HMDB0000125	Glutathione	Glutathione	ABCC3	ATP-binding cassette sub-family C member 3	HMDB	Transporter
-138	HMDB0000125	Glutathione	Glutathione	ABCC4	ATP-binding cassette sub-family C member 4	HMDB	Transporter
-139	HMDB0000125	Glutathione	Glutathione	ABCC5	Multidrug resistance-associated protein 5	HMDB	Transporter
-140	HMDB0000067	Cholesterol	Cholesterol	ABCG2	Broad substrate specificity ATP-binding cassette transporter ABCG2	HMDB	Transporter
 141	HMDB0000123	Glycine	Glycine	SLC16A10	Monocarboxylate transporter 10	HMDB	Transporter
 142	HMDB0000097	Choline	Choline	SLC22A1	Solute carrier family 22 member 1	HMDB	Transporter
 143	HMDB0001256	Spermine	Spermine	SLC22A1	Solute carrier family 22 member 1	HMDB; Recon2	Transporter
 144	HMDB0001414	Putrescine	Putrescine	SLC22A4	Solute carrier family 22 member 4	HMDB	Transporter
 145	HMDB0001256	Spermine	Spermine	SLC22A4	Solute carrier family 22 member 4	HMDB	Transporter
 146	HMDB0000064	Creatine	Creatine	SLC16A12	Monocarboxylate transporter 12	23578822	Transporter
-147	HMDB0000064	Creatine	Creatine	SLC22A5	Solute carrier family 22 member 5	HMDB	Transporter
 148	HMDB0000123	Glycine	Glycine	SLC36A1	Proton-coupled amino acid transporter 1	HMDB	Transporter
 149	HMDB0000097	Choline	Choline	SLC44A1	Choline transporter-like protein 1	HMDB	Transporter
 150	HMDB0000097	Choline	Choline	SLC44A2	Choline transporter-like protein 2	HMDB	Transporter
@@ -413,4 +405,29 @@ ID	HMDB_ID	standard_metName	metName	Gene_name	Protein_name	Evidence	Annotation
 414	HMDB0000121	Folic acid	Folic acid	SLC19A1	Solute carrier family 15 member 1	28284395	Transporter
 415	HMDB0000235	Thiamine	Thiamine	SLC19A3	Solute carrier family 15 member 1	28284395	Transporter
 416	HMDB0000190	L-Lactic acid	Lactate	SLC16A1	Monocarboxylate transporter 1	32144120; 22428047	Transporter
-417	HMDB00000771	Dehydroepiandrosterone	Dehydroepiandrosterone	AR	Solute carrier family 15 member 1	21303972; 24861263; 12647261	Nuclear Receptor
+417	HMDB0000077	Dehydroepiandrosterone	Dehydroepiandrosterone	AR	Solute carrier family 15 member 1	21303972; 24861263; 12647261	Nuclear Receptor
+418	HMDB0000586	Potassium	Potassium	ABCC8	ATP-binding cassette sub-family C member 8	https://en.wikipedia.org/wiki/ABCC8; 23226049; 24399968; 22050960; 24700710	Transporter
+420	HMDB0006111	12-HETE	12-HETE	GPR31	12-(S)-hydroxy-5,8,10,14-eicosatetraenoic acid receptor	32918516	Receptor
+421	HMDB0000757	Glycogen	Glycogen	STBD1	Starch-binding domain-containing protein 1	20810658; 21893048; 32927708; 24837458	Receptor
+423	HMDB0000715	Kynurenic acid	Kynurenic acid	GPR35	G-protein coupled receptor 35	22523636; 23123095; 30141532; 29414686; 16754668	Receptor
+424	HMDB0004385	Lipoxin A4	Lipoxin A4	ESR1	Estrogen receptor	24587003	Receptor
+425	HMDB0000588	Sodium	Sodium	SLC5A1	Sodium/glucose cotransporter 1	Recon2	Transporter
+426	HMDB0000588	Sodium	Sodium	SLC5A5	Sodium/iodide cotransporter	Recon2	Transporter
+427	HMDB0000588	Sodium	Sodium	SLC5A3	Sodium/myo-inositol cotransporter	Recon2	Transporter
+428	HMDB0000719	L-Homoserine	L-homoserine	SLC43A1	Large neutral amino acids transporter small subunit 3	Recon2	Transporter
+429	HMDB0000492	Chloride ion	Chloride	SLC17A1	Sodium-dependent phosphate transport protein 1	Recon2	Transporter
+430	HMDB0003229	Palmitoleic acid	Hexadecenoate (n-C16:1)	SLC27A2	Very long-chain acyl-CoA synthetase	Recon2	Transporter
+431	HMDB0012238	Iodide	iodide	SLC5A8	Sodium-coupled monocarboxylate transporter 1	Recon2	Transporter
+432	HMDB0002003	Tetracosanoic acid	lignocerate	SLC27A2	Very long-chain acyl-CoA synthetase	Recon2	Transporter
+433	HMDB0001893	alpha-Tocopherol	(+)-alpha-tocopherol	SCARB1	Scavenger receptor class B member 1	Recon2	Transporter
+434	HMDB0001893	alpha-Tocopherol	(+)-alpha-tocopherol	NPC1L1	NPC1-like intracellular cholesterol transporter 1	Recon2	Transporter
+435	HMDB0000573	Elaidic acid	elaidate	SLC27A2	Very long-chain acyl-CoA synthetase	Recon2	Transporter
+436	HMDB0002086	Adenosylcobalamin	Adenosylcobalamin	CUBN	Cubilin	Recon2	Transporter
+437	HMDB0002086	Adenosylcobalamin	Adenosylcobalamin	AMN	Protein amnionless [Cleaved into: Soluble protein amnionless]	Recon2	Transporter
+438	HMDB0000630	Cytosine	cytosine	SLC29A2	Equilibrative nucleoside transporter 2	Recon2	Transporter
+439	HMDB0006543	Debrisoquine	debrisoquine	SLC22A2	Solute carrier family 22 member 2	Recon2	Transporter
+440	HMDB0011733	Glycyl-glycine	Glycyl-glycine	SLC15A1	Solute carrier family 15 member 1	Recon2	Transporter
+441	HMDB0000295	Uridine 5'-diphosphate	Uridine 5'-diphosphate	P2RY6	Solute carrier family 15 member 1	24335194	Receptor
+442	HMDB0000801	Phytanic acid	Phytanic acid	PPARA	Solute carrier family 15 member 1	11923221	Nuclear Receptor
+443	HMDB0000801	Phytanic acid	Phytanic acid	PPARG	Solute carrier family 15 member 1	11923221	Nuclear Receptor
+444	HMDB0005079	15-Deoxy-d-12,14-PGJ2	15-Deoxy-d-12,14-PGJ2	PPARG	Solute carrier family 15 member 1	20615454	Nuclear Receptor

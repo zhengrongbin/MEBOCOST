@@ -35,11 +35,11 @@ def _make_config(conf_path, workdir=os.getcwd()):
 ## setup
 def main():
   setuptools.setup(name="mebocost", 
-                  version="1.0.2",
+                  version="1.0.3",
                   description="a python-based method to predict metabolite mediated cell-cell communication",
                   author='Rongbin Zheng, Kaifu Chen',
                   author_email='Rongbin.Zheng@childrens.harvard.edu',
-                  url='http://liulab.dfci.harvard.edu/',
+                  url='https://openwetware.org/wiki/Chenlab',
                   # scripts=glob('mebocost/*'),
                   zip_safe=True,
                   package_dir={"": "src"},

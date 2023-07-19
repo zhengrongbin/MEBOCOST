@@ -13,7 +13,7 @@ import collections
 import pickle as pk
 import traceback
 from datetime import datetime
-import xlmhg
+import xlmhglite
 from scipy import sparse
 
 import multiprocessing
@@ -168,7 +168,7 @@ class PathwayEnrich:
     def getmHG(self, genes_indices, N, X, L):
         # genes_indices = sorted(set(genes_indices))
         go_indices = np.uint16(genes_indices)
-        res = xlmhg.get_xlmhg_test_result(N, go_indices, X=X, L=L)
+        res = xlmhglite.get_xlmhg_test_result(N, go_indices, X=X, L=L)
         try:
             res_list = ["%s,%s,%s,%s"%(res.N, res.cutoff, res.K, res.k), res.stat, res.fold_enrichment, res.pval]
         except:

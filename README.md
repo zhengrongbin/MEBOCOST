@@ -23,7 +23,7 @@
 
 ### Version control
 <p>We keep updating MEBOCOST!!!</p>
-<p>Added tutorial to integrate COMPASS software for mCCC analysis by constraining metabolite efflux and influx</p>
+<p><b>Added tutorial to integrate COMPASS software for mCCC analysis by constraining metabolite efflux and influx</b></p>
 <li>Current release: 1.0.3</li>
 
 - fixed bugs in background estimation

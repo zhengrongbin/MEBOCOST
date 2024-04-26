@@ -18,15 +18,16 @@
 
 
 #### The Flowchart of MEBOCOST
-<p>workflow for predicting cell-cell metabolic communication events taking scRNA-seq data as input.</p>
+<p>workflow for predicting metabolite mediated cell-cell communication (mCCC) taking scRNA-seq data as input.</p>
 <img src='./images/mebocost_flowchart.png' style='margin-left: auto; margin-right: auto;display: block;'></img>
 
 ### Version control
 <p>We keep updating MEBOCOST!!!</p>
-<li>Current release: 1.0.2</li>
+<p>Added tutorial to integrate COMPASS software for mCCC analysis by constraining metabolite efflux and influx</p>
+<li>Current release: 1.0.3</li>
 
 - fixed bugs in background estimation
-- automated decision of cutoffs to exclude lowly ranked 25% sensors or metabolites across all cells, cutoffs can still be specified by users
+- automated cutoffs to exclude lowly ranked 25% sensors or metabolites across all cells, cutoffs can still be specified by users
 - add parameters in plot functions, including show_num in eventnum_bar
 
 <hr>
@@ -71,8 +72,8 @@ pip install git+https://github.com/zhengrongbin/MEBOCOST.git --upgrade
 ### Tutorial for MEBOCOST
 
 <li><a href='./Demo_Communication_Prediction.ipynb' target='_blank'>Prediction of cell-cell metabolic communication by scRNA-seq data</a></li>
-<li><a href='./Demo_Pathway_Inference.ipynb' target='_blank'>Inference of cell-cell metabolic communication associated pathways in receiver cells (in development and only Python3.8 supported)</a></li>
-
+<!-- <li><a href='./Demo_Pathway_Inference.ipynb' target='_blank'>Inference of cell-cell metabolic communication associated pathways in receiver cells (in development and only Python3.8 supported)</a></li>
+ -->
 ### Cite us
 <p>Please cite us at <a href='https://www.biorxiv.org/content/10.1101/2022.05.30.494067v1' target='_blank'>bioRxiv</a> if you find MEBOCOST is useful to your project.</p>
 

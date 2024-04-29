@@ -3,7 +3,7 @@
 ## Welcome to use MEBOCOST: <I>Me</I>ta<I>bo</I>lic Cell-Cell <I>Co</I>mmunication Modeling by <I>S</I>ingle Cell <I>T</I>ranscriptome
 
 ### What is MEBOCOST and hoe does it work?
-<p>MEBOCOST is a Python-based computational tool for inferring metabolite, such as lipid, mediated cell-cell communication events using single-cell RNA-seq data. Briefly, in the first step, MEBOCOST imputes the relative abundance of metabolites based on the gene expression of metabolic reaction enzymes. The genes of enzymes were collected from Human Metabolome Database (HMDB). Next, MEBOCOST identifies cell-cell metabolite-sensor communications between cell groups, in which metabolite enzymes and sensors were highly expressed in sender and receiver cells, respectively.</p>
+<p>MEBOCOST is a Python-based computational tool for inferring metabolite, such as lipid, mediated cell-cell communication events using single-cell RNA-seq data. MEBOCOST includes a manually curated database of metabolite-sensor partners and defines sender and receiver cells based on rates of metabolite efflux and influx, along with expression levels of enzyme and sensor genes, respectively.</p>
 
 ### Term of Usage
 1. You agree NOT to make the MEBOCOST data (or any part thereof, modified or not) available to anyone outside your research group. "Make available" includes leaving the data where it may be accessible to outside individuals without your direct knowledge (e.g. on a computer to which people outside your group have login privileges), as well as directly providing it to someone.

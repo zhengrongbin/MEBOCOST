@@ -1,3 +1,4 @@
+<h1>Please refer to <a href="https://github.com/kaifuchenlab/MEBOCOST/" target='_blank'>https://github.com/kaifuchenlab/MEBOCOST/</a> for the MEBOCOST v1.0.4 for more function modules, better plotting, and fixed bugs </h1>
 <img src="./images/mebocost_logo.png" width="200" height="180" style='margin-left: auto; margin-right: auto;display: block;'></img>
 
 ## Welcome to use MEBOCOST: <I>Me</I>ta<I>bo</I>lic Cell-Cell <I>Co</I>mmunication Modeling by <I>S</I>ingle Cell <I>T</I>ranscriptome

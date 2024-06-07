@@ -14,7 +14,7 @@ import pandas as pd
 import traceback
 import matplotlib
 import collections
-import xlmhg
+import xlmhglite
 import seaborn as sns
 from adjustText import adjust_text
 from matplotlib import pyplot as plt

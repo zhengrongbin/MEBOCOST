@@ -105,7 +105,7 @@ python -m pip install .
 
 <li>
 
-<a href='./Demo_Communication_Prediction.ipynb' target='_blank'>Prediction of cell-cell metabolic communication by scRNA-seq data</a>
+<a href='https://github.com/kaifuchenlab/MEBOCOST/blob/main/Demo_Communication_Prediction.ipynb'>Prediction of cell-cell metabolic communication by scRNA-seq data</a>
 
 </li>
 

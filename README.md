@@ -76,7 +76,7 @@ conda activate mebocost
 -   download MEBOCOST package from github
 
 ```{bash}
-git clone https://github.com/zhengrongbin/MEBOCOST.git
+git clone https://github.com/kaifuchenlab/MEBOCOST.git
 
 cd MEBOCOST
 ```

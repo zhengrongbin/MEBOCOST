@@ -1,5 +1,9 @@
 # The full package has been moved to the ChenLab github. Please visit <a href='https://github.com/kaifuchenlab/MEBOCOST'>v1.0.4</a> for the latest tutorial.
 
+<p>
+Read our publication at <a href='https://doi.org/10.1093/nar/gkaf569' target='_blank'>NAR</a> 
+</p>
+
 <img src="./images/mebocost_logo.png" width="200" height="180" style="margin-left: auto; margin-right: auto;display: block;"/></img>
 
 ## Welcome to use MEBOCOST: <I>Me</I>ta<I>bo</I>lic Cell-Cell <I>Co</I>mmunication Modeling by <I>S</I>ingle Cell <I>T</I>ranscriptome
@@ -109,12 +113,10 @@ python -m pip install .
 
 </li>
 
-### Cite us
+### Please cite us if you find MEBOCOST is useful to your project.
 
 <p>
-
-Please cite us at <a href='https://www.biorxiv.org/content/10.1101/2022.05.30.494067v1' target='_blank'>bioRxiv</a> if you find MEBOCOST is useful to your project.
-
+Please cite us at <a href='https://doi.org/10.1093/nar/gkaf569' target='_blank'>NAR</a> 
 </p>
 
 ### Contact

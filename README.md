@@ -1,8 +1,8 @@
 # The full package has been moved to the ChenLab github. Please visit <a href='https://github.com/kaifuchenlab/MEBOCOST'>v1.0.4</a> for the latest tutorial.
 
-<p>
+<h3>
 Read our publication at <a href='https://doi.org/10.1093/nar/gkaf569' target='_blank'>NAR</a> 
-</p>
+</h3>
 
 <img src="./images/mebocost_logo.png" width="200" height="180" style="margin-left: auto; margin-right: auto;display: block;"/></img>
 

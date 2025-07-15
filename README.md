@@ -1,4 +1,5 @@
 # The full package has been moved to the ChenLab github. Please visit <a href='https://github.com/kaifuchenlab/MEBOCOST'>v1.0.4</a> for the latest tutorial.
+## Join our email group for conveninent discussions and receive timely updates: https://forms.cloud.microsoft/r/TK7TuEU4TU 
 
 <h3>
 Read our publication at <a href='https://doi.org/10.1093/nar/gkaf569' target='_blank'>NAR</a> 

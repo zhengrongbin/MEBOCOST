@@ -1,4 +1,4 @@
-# The full package has been moved to the ChenLab github. Please visit <a href='https://github.com/kaifuchenlab/MEBOCOST'>v1.0.4</a> for the latest tutorial.
+# The full package has been moved to the ChenLab github. Please visit <a href='https://github.com/kaifuchenlab/MEBOCOST'>v1.2.0</a> for the latest tutorial, including differential analysis.
 ## Join our email group for conveninent discussions and receive timely updates: https://forms.cloud.microsoft/r/TK7TuEU4TU 
 
 <h3>
